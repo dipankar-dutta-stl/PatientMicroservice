@@ -1,7 +1,5 @@
 package com.spring.microservice.patient.model;
 
-import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
