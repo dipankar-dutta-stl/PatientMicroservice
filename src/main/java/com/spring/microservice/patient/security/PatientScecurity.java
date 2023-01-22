@@ -36,7 +36,7 @@ public class PatientScecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().disable().authorizeRequests()
 				.antMatchers("/api/v1/patient/add", "/api/v1/patient/authenticate",
-						"/api/v1/patient/validade-token/{token}")
+						"/api/v1/patient/validade-token/{token}","/api/v1/patient/get/id/{id}")
 				.permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated().and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

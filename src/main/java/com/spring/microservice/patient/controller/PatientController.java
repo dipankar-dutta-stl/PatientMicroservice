@@ -47,6 +47,7 @@ public class PatientController {
             UUID id= UUID.randomUUID();
             patientDetails.setID(id.toString());
             patientDetails.setEMAIL_ID(patientLogin.getEMAIL_ID());
+            patientDetails.setADDRESS(patientDetails.getADDRESS().replace(",","|"));
             patientLoginRepo.save(patientLogin);
             patientDetailsRepo.save(patientDetails);
             return "SUCCESSFULLY REGISTERED.";
@@ -74,6 +75,19 @@ public class PatientController {
         return patient;
 
     }
+    
+    @GetMapping("/get/id/{id}")
+    public PatientDetails getPatientById(@PathVariable("id") String id){
+    	try {
+    		PatientDetails patientDetails=patientDetailsRepo.findById(id).get();
+            return patientDetails;
+    	}catch(Exception x) {
+    		return null;
+    	}
+        
+
+    }
+    
     @GetMapping("/validade-token/{token}")
     public Boolean isTokenValid(@PathVariable("token") String token){
         try{
