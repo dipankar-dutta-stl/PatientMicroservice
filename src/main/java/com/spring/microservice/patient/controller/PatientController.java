@@ -71,6 +71,7 @@ public class PatientController {
     public Patient getPatient(@PathVariable("email") String email){
         PatientLogin patientLogin=patientLoginRepo.findById(email).get();
         PatientDetails patientDetails=patientDetailsRepo.findByEmail(email);
+        patientDetails.setADDRESS(patientDetails.getADDRESS().replace("|",","));
         Patient patient=new Patient(patientDetails,patientLogin);
         return patient;
 
@@ -80,6 +81,7 @@ public class PatientController {
     public PatientDetails getPatientById(@PathVariable("id") String id){
     	try {
     		PatientDetails patientDetails=patientDetailsRepo.findById(id).get();
+            patientDetails.setADDRESS(patientDetails.getADDRESS().replace("|",","));
             return patientDetails;
     	}catch(Exception x) {
     		return null;
@@ -104,6 +106,7 @@ public class PatientController {
     @PutMapping("/update")
     public String updatePatient(@RequestBody PatientDetails pd) {
     	try {
+            pd.setADDRESS(pd.getADDRESS().replace(",","|"));
     		patientDetailsRepo.save(pd);
     		return "UPDATE SUCCESSFUL";
     	}catch(Exception x) {
