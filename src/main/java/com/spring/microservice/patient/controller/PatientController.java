@@ -13,8 +13,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.UUID;
 
 @RestController
@@ -67,6 +69,7 @@ public class PatientController {
         return "AUTHENTICATION FAILED";
     }
 
+
     @GetMapping("/get/{email}")
     public Patient getPatient(@PathVariable("email") String email){
         PatientLogin patientLogin=patientLoginRepo.findById(email).get();
@@ -114,4 +117,5 @@ public class PatientController {
     	}
     	
     }
+
 }
