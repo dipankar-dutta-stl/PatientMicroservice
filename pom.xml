@@ -70,6 +70,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>PatientMicroservice</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
